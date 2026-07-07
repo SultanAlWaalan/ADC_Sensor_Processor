@@ -1,8 +1,9 @@
-//
-// Created by Bakr on 7/7/2026.
-//
+#ifndef STATS_H
+#define STATS_H
 
-#ifndef ADC_SENSOR_PROCESSOR_STATS_H
-#define ADC_SENSOR_PROCESSOR_STATS_H
+double calculate_mean(const double *values, int count);
+double calculate_min(const double *values, int count);
+double calculate_max(const double *values, int count);
+double calculate_standard_deviation(const double *values, int count, double mean);
 
-#endif //ADC_SENSOR_PROCESSOR_STATS_H
+#endif
