@@ -31,7 +31,28 @@ void compute_channel_statistics(const ADCSample *samples,
         const ADCSample *current = samples + i;
 
         if (current->channel_id < 4) {
-            channel_counts[current->channel_id]++;
+            int ch = current->channel_id;
+
+            if (channel_values[ch] != NULL) {
+                channel_values[ch][channel_counts[ch]] = current->voltage;
+                channel_counts[ch]++;
+            }
+
+            if (current->voltage > 3.0) {
+                stats[ch].overvoltage_count++;
+            }
+
+            if (current->voltage < 0.3) {
+                stats[ch].undervoltage_count++;
+            }
+
+            if (current->status_flags & FLAG_SENSOR_FAULT) {
+                stats[ch].sensor_fault_count++;
+            }
+
+            if (current->status_flags & FLAG_OUT_OF_RANGE) {
+                stats[ch].out_of_range_count++;
+            }
         }
     }
 

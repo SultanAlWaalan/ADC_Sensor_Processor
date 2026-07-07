@@ -28,6 +28,15 @@ int main(int argc, char *argv[]) {
                stats[i].mean_voltage);
     }
 
+    for (int i = 0; i < 4; i++) {
+        printf("Channel %d: over=%d under=%d fault=%d oor=%d\n",
+               stats[i].channel_id,
+               stats[i].overvoltage_count,
+               stats[i].undervoltage_count,
+               stats[i].sensor_fault_count,
+               stats[i].out_of_range_count);
+    }
+
     printf("Loaded %u records successfully.\n", header.record_count);
     printf("First sample voltage: %.6f V\n", samples[0].voltage);
 
