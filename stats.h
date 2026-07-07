@@ -1,0 +1,8 @@
+//
+// Created by Bakr on 7/7/2026.
+//
+
+#ifndef ADC_SENSOR_PROCESSOR_STATS_H
+#define ADC_SENSOR_PROCESSOR_STATS_H
+
+#endif //ADC_SENSOR_PROCESSOR_STATS_H
