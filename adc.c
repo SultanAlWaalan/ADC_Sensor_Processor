@@ -100,3 +100,28 @@ void compute_channel_statistics(const ADCSample *samples,
         free(channel_values[ch]);
     }
 }
+
+int detect_sequence_gaps(const ADCSample *samples,
+                         uint32_t count,
+                         SequenceGap *gaps,
+                         int max_gaps) {
+    int gap_count = 0;
+
+    for (uint32_t i = 0; i + 1 < count; i++) {
+        const ADCSample *current = samples + i;
+        const ADCSample *next = samples + i + 1;
+
+        if (next->sequence_number != current->sequence_number + 1) {
+            if (gap_count < max_gaps) {
+                gaps[gap_count].previous_sequence = current->sequence_number;
+                gaps[gap_count].next_sequence = next->sequence_number;
+                gaps[gap_count].missing_count =
+                        next->sequence_number - current->sequence_number - 1;
+            }
+
+            gap_count++;
+        }
+    }
+
+    return gap_count;
+}

@@ -37,6 +37,12 @@ int main(int argc, char *argv[]) {
                stats[i].out_of_range_count);
     }
 
+    SequenceGap gaps[20];
+
+    int gap_count = detect_sequence_gaps(samples, header.record_count, gaps, 20);
+
+    printf("Sequence gaps detected: %d\n", gap_count);
+
     printf("Loaded %u records successfully.\n", header.record_count);
     printf("First sample voltage: %.6f V\n", samples[0].voltage);
 
