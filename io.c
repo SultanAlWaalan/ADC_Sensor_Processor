@@ -46,7 +46,35 @@ int read_adc_file(const char *filename, ADCHeader *header, ADCSample **samples) 
         return 0;
     }
 
-    *samples = NULL;
+    *samples = malloc(header->record_count * sizeof(ADCSample));
+
+    if (*samples == NULL) {
+        printf("Error: memory allocation failed.\n");
+        fclose(file);
+        return 0;
+    }
+
+    for (uint32_t i = 0; i < header->record_count; i++) {
+        ADCSampleFile file_record;
+
+        if (fread(&file_record, sizeof(ADCSampleFile), 1, file) != 1) {
+            printf("Error: could not read record %u.\n", i);
+            free(*samples);
+            *samples = NULL;
+            fclose(file);
+            return 0;
+        }
+
+        ADCSample *current = *samples + i;
+
+        current->timestamp = file_record.timestamp;
+        current->channel_id = file_record.channel_id;
+        current->raw_value = file_record.raw_value;
+        current->temperature = file_record.temperature;
+        current->status_flags = file_record.status_flags;
+        current->sequence_number = file_record.sequence_number;
+        current->voltage = 0.0;
+    }
 
     fclose(file);
     return 1;

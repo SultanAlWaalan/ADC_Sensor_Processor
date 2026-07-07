@@ -1,6 +1,7 @@
 #include "adc.h"
 #include "io.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[]) {
     ADCHeader header;
@@ -15,8 +16,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    printf("Header read successfully.\n");
-    printf("Records: %u\n", header.record_count);
+    printf("Loaded %u records successfully.\n", header.record_count);
 
+    free(samples);
     return 0;
 }
