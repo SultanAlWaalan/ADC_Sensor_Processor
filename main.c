@@ -16,6 +16,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    convert_all_voltages(samples, header.record_count);
+
+    printf("Loaded %u records successfully.\n", header.record_count);
+    printf("First sample voltage: %.6f V\n", samples[0].voltage);
+
     printf("Loaded %u records successfully.\n", header.record_count);
 
     free(samples);
