@@ -29,6 +29,13 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    if (!write_fault_report_file("fault_report.txt", samples, header.record_count)) {
+        free(samples);
+        return 1;
+    }
+
+    printf("Fault report written to fault_report.txt\n");
+
     printf("Analysis complete.\n");
     printf("Summary written to results.txt\n");
 
