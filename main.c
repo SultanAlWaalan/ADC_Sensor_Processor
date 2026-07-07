@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+ChannelStats stats[4];
+
 int main(int argc, char *argv[]) {
     ADCHeader header;
     ADCSample *samples = NULL;
@@ -17,6 +19,14 @@ int main(int argc, char *argv[]) {
     }
 
     convert_all_voltages(samples, header.record_count);
+    compute_channel_statistics(samples, header.record_count, stats);
+
+
+    for (int i = 0; i < 4; i++) {
+        printf("Channel %d mean voltage: %.6f V\n",
+               stats[i].channel_id,
+               stats[i].mean_voltage);
+    }
 
     printf("Loaded %u records successfully.\n", header.record_count);
     printf("First sample voltage: %.6f V\n", samples[0].voltage);
