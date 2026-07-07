@@ -1,8 +1,8 @@
-//
-// Created by Bakr on 7/7/2026.
-//
+#ifndef IO_H
+#define IO_H
 
-#ifndef ADC_SENSOR_PROCESSOR_IO_H
-#define ADC_SENSOR_PROCESSOR_IO_H
+#include "adc.h"
 
-#endif //ADC_SENSOR_PROCESSOR_IO_H
+int read_adc_file(const char *filename, ADCHeader *header, ADCSample **samples);
+
+#endif

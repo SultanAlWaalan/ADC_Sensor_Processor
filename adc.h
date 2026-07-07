@@ -33,4 +33,46 @@ typedef struct __attribute__((packed)) {
     uint8_t reserved[2];
 } ADCSampleFile;
 
+typedef struct {
+    float timestamp;
+    uint8_t channel_id;
+    uint16_t raw_value;
+    double voltage;
+    int16_t temperature;
+    uint8_t status_flags;
+    uint32_t sequence_number;
+} ADCSample;
+
+typedef struct {
+    int channel_id;
+    int sample_count;
+
+    double mean_voltage;
+    double min_voltage;
+    double max_voltage;
+    double std_deviation;
+
+    int overvoltage_count;
+    int undervoltage_count;
+    int sensor_fault_count;
+    int out_of_range_count;
+} ChannelStats;
+
+typedef struct {
+    uint32_t previous_sequence;
+    uint32_t next_sequence;
+    uint32_t missing_count;
+} SequenceGap;
+
+void convert_all_voltages(ADCSample *samples, uint32_t count);
+
+void compute_channel_statistics(const ADCSample *samples,
+                                uint32_t count,
+                                ChannelStats stats[4]);
+
+int detect_sequence_gaps(const ADCSample *samples,
+                         uint32_t count,
+                         SequenceGap *gaps,
+                         int max_gaps);
+
 #endif
