@@ -31,6 +31,28 @@ void compute_channel_statistics(const ADCSample *samples,
         const ADCSample *current = samples + i;
 
         if (current->channel_id < 4) {
+            channel_counts[current->channel_id]++;
+        }
+    }
+
+    double *channel_values[4];
+
+    for (int ch = 0; ch < 4; ch++) {
+        channel_values[ch] = malloc(channel_counts[ch] * sizeof(double));
+
+        if (channel_values[ch] == NULL) {
+            stats[ch].sample_count = 0;
+        } else {
+            stats[ch].sample_count = channel_counts[ch];
+        }
+
+        channel_counts[ch] = 0;
+    }
+
+    for (uint32_t i = 0; i < count; i++) {
+        const ADCSample *current = samples + i;
+
+        if (current->channel_id < 4) {
             int ch = current->channel_id;
 
             if (channel_values[ch] != NULL) {
@@ -53,30 +75,6 @@ void compute_channel_statistics(const ADCSample *samples,
             if (current->status_flags & FLAG_OUT_OF_RANGE) {
                 stats[ch].out_of_range_count++;
             }
-        }
-    }
-
-    double *channel_values[4];
-
-    for (int ch = 0; ch < 4; ch++) {
-        channel_values[ch] = malloc(channel_counts[ch] * sizeof(double));
-
-        if (channel_values[ch] == NULL) {
-            stats[ch].sample_count = 0;
-        } else {
-            stats[ch].sample_count = channel_counts[ch];
-        }
-
-        channel_counts[ch] = 0;
-    }
-
-    for (uint32_t i = 0; i < count; i++) {
-        const ADCSample *current = samples + i;
-
-        if (current->channel_id < 4 && channel_values[current->channel_id] != NULL) {
-            int ch = current->channel_id;
-            channel_values[ch][channel_counts[ch]] = current->voltage;
-            channel_counts[ch]++;
         }
     }
 

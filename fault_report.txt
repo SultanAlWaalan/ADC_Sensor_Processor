@@ -1,0 +1,36 @@
+ADC Fault Report
+================
+
+This file lists every record where a fault condition was detected.
+Fault conditions checked:
+- Overvoltage: voltage > 3.0 V
+- Undervoltage: voltage < 0.3 V
+- Sensor Fault: status_flags bit 0 set
+- Out of Range: status_flags bit 1 set
+
+Record   Timestamp    Channel  Raw        Voltage(V)   Sequence     Fault Type          
+------   ---------    -------  ---        ----------   --------     ----------          
+403      0.1000       3        2791       2.249158     403          Sensor Fault        
+407      0.1010       3        2797       2.253993     407          Sensor Fault        
+601      0.1500       1        3930       3.167033     601          Overvoltage         
+605      0.1510       1        3923       3.161392     605          Overvoltage         
+609      0.1520       1        3969       3.198462     609          Overvoltage         
+802      0.2000       2        130        0.104762     804          Undervoltage        
+806      0.2010       2        167        0.134579     808          Undervoltage        
+810      0.2020       2        196        0.157949     812          Undervoltage        
+814      0.2030       2        179        0.144249     816          Undervoltage        
+1003     0.2500       3        1730       1.394139     1005         Sensor Fault        
+1003     0.2500       3        1730       1.394139     1005         Out of Range        
+1601     0.4000       1        3872       3.120293     1603         Overvoltage         
+1605     0.4010       1        3909       3.150110     1607         Overvoltage         
+2002     0.5000       2        180        0.145055     2004         Undervoltage        
+2006     0.5010       2        252        0.203077     2008         Undervoltage        
+2403     0.6000       3        2805       2.260440     2405         Sensor Fault        
+2403     0.6000       3        2805       2.260440     2405         Out of Range        
+2407     0.6010       3        2795       2.252381     2409         Sensor Fault        
+2411     0.6020       3        2803       2.258828     2413         Sensor Fault        
+2801     0.7000       1        3932       3.168645     2805         Overvoltage         
+3203     0.8000       3        1092       0.880000     3207         Sensor Fault        
+3402     0.8500       2        143        0.115238     3406         Undervoltage        
+
+Total fault entries: 22

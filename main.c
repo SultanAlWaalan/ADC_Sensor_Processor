@@ -34,10 +34,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    printf("Fault report written to fault_report.txt\n");
-
     printf("Analysis complete.\n");
     printf("Summary written to results.txt\n");
+    printf("Fault report written to fault_report.txt\n");
 
     free(samples);
     return 0;

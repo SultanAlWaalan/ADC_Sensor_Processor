@@ -1,0 +1,63 @@
+ADC Sensor Log Analysis Report
+==============================
+
+Header Information
+------------------
+Magic Number: 0xADC1BEEF
+Version: 1
+Channel Count: 4
+Record Count: 4000
+Sample Rate: 1000 Hz
+
+Per-Channel Statistics
+----------------------
+
+Channel 0
+Samples: 1000
+Mean Voltage: 1.649628 V
+Minimum Voltage: 0.438388 V
+Maximum Voltage: 2.858388 V
+Standard Deviation: 0.848408 V
+Overvoltage Count: 0
+Undervoltage Count: 0
+Sensor Fault Count: 0
+Out-of-Range Count: 0
+
+Channel 1
+Samples: 1000
+Mean Voltage: 1.505853 V
+Minimum Voltage: 0.489158 V
+Maximum Voltage: 3.198462 V
+Standard Deviation: 0.716817 V
+Overvoltage Count: 6
+Undervoltage Count: 0
+Sensor Fault Count: 0
+Out-of-Range Count: 0
+
+Channel 2
+Samples: 1000
+Mean Voltage: 1.786128 V
+Minimum Voltage: 0.104762 V
+Maximum Voltage: 2.907546 V
+Standard Deviation: 0.788847 V
+Overvoltage Count: 0
+Undervoltage Count: 7
+Sensor Fault Count: 0
+Out-of-Range Count: 0
+
+Channel 3
+Samples: 1000
+Mean Voltage: 1.399686 V
+Minimum Voltage: 0.485128 V
+Maximum Voltage: 2.312821 V
+Standard Deviation: 0.636375 V
+Overvoltage Count: 0
+Undervoltage Count: 0
+Sensor Fault Count: 7
+Out-of-Range Count: 2
+
+Sequence Integrity
+------------------
+Sequence gaps detected: 2
+Gap 1: previous sequence 798, next sequence 801, missing records 2
+Gap 2: previous sequence 2497, next sequence 2500, missing records 2
